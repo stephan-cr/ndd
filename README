@@ -1,0 +1,55 @@
+NULL Deref Detector
+===================
+
+1. Overview
+
+"null_deref_detector" (NDD) is a Valgrind tool that does more than the
+Valgrind "none" tool. NDD can detect cases of null dereferencing bugs
+in C programs at runtime.
+
+Dereferencing a null pointer in C is undefined behavior and it is not
+guaranteed that it leads to a "segmentation fault", see:
+http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html
+
+As an example, suppose you have to following C program:
+
+#include <stddef.h>
+
+struct st {
+    int x;
+};
+
+int main(void)
+{
+    struct st *s = NULL;
+    return s->x;
+}
+
+If you compile the program and run it like follows:
+
+$ valgrind --tool=ndd bugs/null_deref
+
+it produces:
+
+==14526== NDD-0.1, a minimal null dereference checker
+==14526== Copyright (C) 2010, 2011, and GNU GPL'd, by Stephan Creutz.
+==14526== Using Valgrind-3.6.1 and LibVEX; rerun with -h for copyright info
+==14526== Command: bugs/null_deref
+==14526==
+==14526== load from null pointer detected
+==14526==    at 0x4004A4: main (null_deref.c:10)
+
+2. How to install
+
+To compile Valgrind with NDD to helper scripts are
+provided. "export_valgrind.sh" exports the most recent version of
+Valgrind to the subdirectory "valgrind".
+
+"compile_foobar.sh" patches Valgrind's source for NDD, compiles its
+source and finally installs it.
+
+Both shell scripts are POSIX compliant and should work with all POSIX
+compliant shells like dash, bash, zsh otherwise I consider this as a
+bug.
+
+Contributions, like patches and ideas are welcome.

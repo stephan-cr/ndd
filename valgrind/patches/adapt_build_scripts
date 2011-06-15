@@ -1,0 +1,28 @@
+Index: valgrind/Makefile.am
+===================================================================
+--- valgrind.orig/Makefile.am	2011-06-06 13:28:34.000000000 +0200
++++ valgrind/Makefile.am	2011-06-06 13:33:48.000000000 +0200
+@@ -10,7 +10,8 @@
+ 		lackey \
+ 		none \
+ 		helgrind \
+-		drd
++		drd \
++		ndd
+ 
+ EXP_TOOLS = 	exp-ptrcheck \
+ 		exp-bbv \
+Index: valgrind/configure.in
+===================================================================
+--- valgrind.orig/configure.in	2011-02-15 19:09:18.000000000 +0100
++++ valgrind/configure.in	2011-06-06 13:37:42.000000000 +0200
+@@ -1969,6 +1969,9 @@
+    exp-bbv/tests/arm-linux/Makefile
+    exp-dhat/Makefile
+    exp-dhat/tests/Makefile
++   ndd/Makefile
++   ndd/docs/Makefile
++   ndd/tests/Makefile
+ ])
+ AC_CONFIG_FILES([coregrind/link_tool_exe_linux],
+                 [chmod +x coregrind/link_tool_exe_linux])

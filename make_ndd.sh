@@ -1,5 +1,11 @@
 #!/bin/sh
 # Copyright (C) 2010, 2011 Stephan Creutz
+#
+# This script is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2 as
+# published by the Free Software Foundation.
+#
+# See the COPYING and AUTHORS files for more details.
 
 set -e
 
